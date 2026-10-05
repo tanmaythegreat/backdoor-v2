@@ -1,6 +1,6 @@
-import { SubmissionResp } from '@/lib/types';
+import { Submission } from '@/lib/types';
 
-export const SUBMISSIONS: SubmissionResp[] = [
+export const SUBMISSIONS: Partial<Submission>[] = [
   {
     userId: 1,
     username: 'c4pt4in_h00k_1818',

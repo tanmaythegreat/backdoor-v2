@@ -4,12 +4,11 @@ import {
   Submission,
   SubmissionResp,
 } from '@/lib/types';
-import { SUBMISSIONS } from './mock-data';
 import {
   CHALLENGE_SUBMISSIONS_TABLE_PAGE_LIMIT,
   SUBMISSIONS_TABLE_PAGE_LIMIT,
 } from '@/lib/constants';
-import { getAuthenticatedAxios, getUnauthenticatedAxios } from '../axios';
+import { getAuthenticatedAxios } from '../axios';
 
 const fetchSubmissions = async ({
   page,
@@ -19,11 +18,11 @@ const fetchSubmissions = async ({
   limit: number;
 }): Promise<{ data: Submission[]; total: number }> => {
   const axios = await getAuthenticatedAxios();
-  const response = await axios.get<SubmissionResp[]>('/info/submissions');
+  const response = await axios.get<SubmissionResp[]>('/admin/submissions');
   const submissions = response.data;
 
   const skip = (page - 1) * limit;
-  let data = submissions.slice(skip, skip + limit);
+  const data = submissions.slice(skip, skip + limit);
 
   // Convert date into readable format
   const filteredData = data.map(
@@ -61,7 +60,7 @@ const fetchSubmissionsByChallenge = async ({
   const submissions = response.data;
 
   const skip = (page - 1) * limit;
-  let data = submissions.slice(skip, skip + limit);
+  const data = submissions.slice(skip, skip + limit);
 
   // Convert date into readable format
   const filteredData = data.map(

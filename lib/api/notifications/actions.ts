@@ -1,8 +1,8 @@
 'use server';
 
 import { BackgroundNotificationSchema } from '@/lib/schemas/auth';
-import { getUnauthenticatedAxios } from '../axios';
-import { HTTPAuthorizeResp, HTTPPlainResp } from '@/lib/types';
+import { getAuthenticatedAxios } from '../axios';
+import { HTTPPlainResp } from '@/lib/types';
 import { AxiosError } from 'axios';
 
 interface ActionResponse {
@@ -36,7 +36,7 @@ export async function sendBackgroundNotificationsAction(
   }
 
   const { title, desc } = parsed.data;
-  const axiosInstance = getUnauthenticatedAxios();
+  const axiosInstance = await getAuthenticatedAxios();
   axiosInstance.defaults.headers['Content-Type'] = 'multipart/form-data';
 
   try {

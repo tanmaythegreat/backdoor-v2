@@ -1,12 +1,11 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { getUnauthenticatedAxios } from './api/axios';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function download(blob: any, fileName = 'data') {
+export function download(blob: Blob, fileName = 'data') {
   const url = URL.createObjectURL(blob);
   console.log(url);
   const link = document.createElement('a');

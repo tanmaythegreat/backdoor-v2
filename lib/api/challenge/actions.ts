@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 import { getAuthenticatedAxios } from '../axios';
+import { AxiosError } from 'axios';
 
 export async function submitFlag(_: unknown, formData: FormData) {
   try {
@@ -25,7 +26,7 @@ export async function submitFlag(_: unknown, formData: FormData) {
       success: boolean;
     } = res.data;
     console.log('submit response: ', res);
-    revalidatePath(`/dashboard/challenges`);
+    revalidatePath('/dashboard/challenge');
     return { message, success };
   } catch (error) {
     console.error('Error submitting flag:', error);
@@ -41,14 +42,18 @@ export async function getHintDetails(hintId: number) {
     const data = res.data;
 
     return { success: true, data };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error redeeming hint:', error);
 
-    const errorMessage =
-      error?.response?.data?.error ||
-      error?.response?.data?.message ||
-      error?.message ||
-      'Failed to redeem hint. Please try again.';
+    let errorMessage = 'Failed to redeem hint. Please try again.';
+    if (error instanceof AxiosError && error.response?.data) {
+      errorMessage =
+        error.response.data.error ||
+        error.response.data.message ||
+        errorMessage;
+    } else if (error instanceof Error) {
+      errorMessage = error.message;
+    }
 
     return {
       success: false,
@@ -64,16 +69,20 @@ export async function redeemHint(hintId: number) {
     const res = await axios.post(`/info/hint/${hintId}`);
     const data = res.data;
 
-    revalidatePath('/dashboard/challenges');
+    revalidatePath('/dashboard/challenge');
     return { success: true, data };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error redeeming hint:', error);
 
-    const errorMessage =
-      error?.response?.data?.error ||
-      error?.response?.data?.message ||
-      error?.message ||
-      'Failed to redeem hint. Please try again.';
+    let errorMessage = 'Failed to redeem hint. Please try again.';
+    if (error instanceof AxiosError && error.response?.data) {
+      errorMessage =
+        error.response.data.error ||
+        error.response.data.message ||
+        errorMessage;
+    } else if (error instanceof Error) {
+      errorMessage = error.message;
+    }
 
     return {
       success: false,

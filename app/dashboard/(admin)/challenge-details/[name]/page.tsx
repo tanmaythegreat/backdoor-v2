@@ -14,7 +14,7 @@ import { Suspense } from 'react';
 const ChallengeDetailsPage = async ({
   params,
 }: {
-  params: { name: string };
+  params: Promise<{ name: string }>;
 }) => {
   const { name } = await params;
 

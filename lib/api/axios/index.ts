@@ -1,12 +1,12 @@
-import { API_BASE_URL } from '@/lib/constants';
+import { API_BASE_URL, BACKEND_URL } from '@/lib/constants';
 import axios, { AxiosInstance } from 'axios';
 import { createAuthenticatedServerAxios } from './server-axios';
 import { createAuthenticatedClientAxios } from './client-axios';
 import { isServer } from '@tanstack/react-query';
 
-export function getUnauthenticatedAxios() {
+export function getUnauthenticatedAxios(baseURL: string = BACKEND_URL) {
   const axiosInstance = axios.create({
-    baseURL: API_BASE_URL,
+    baseURL,
     timeout: 5000,
   });
 
