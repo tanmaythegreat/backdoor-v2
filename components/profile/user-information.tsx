@@ -13,6 +13,16 @@ function UserInformation({ userProfile }: UserInformationProps) {
   const { isLoggedIn, role } = useAuthStore();
   const isAdmin = isLoggedIn && role === 'admin';
 
+  const formatDate = (dateStr: string): string => {
+    const date = new Date(dateStr);
+    if (isNaN(date.getTime())) return 'N/A';
+    return date.toLocaleDateString('en-GB', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  };
+
   return (
     <div className="flex items-start mb-8 my-4">
       <div className="mr-7 mt-2">
@@ -52,20 +62,10 @@ function UserInformation({ userProfile }: UserInformationProps) {
             </p>
             <div className="text-base font-semibold text-secondary-foreground">
               <p className="my-2">
-                Date joined -{' '}
-                {userProfile.createdAt.toLocaleDateString('en-GB', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
+                Date joined - {formatDate(userProfile.createdAt)}
               </p>
               <p className="my-2">
-                Last Active -{' '}
-                {userProfile.lastActive.toLocaleDateString('en-GB', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
+                Last Active - {formatDate(userProfile.lastActive)}
               </p>
             </div>
           </div>

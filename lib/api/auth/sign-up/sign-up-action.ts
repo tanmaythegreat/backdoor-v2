@@ -37,9 +37,10 @@ export async function handleEmailStep(
 ): Promise<ActionResponse> {
   try {
     EmailSchema.parse(convertFormDataToRecord(formData));
-    console.log('Sending OTP to:', formData.get('email'));
+    const email = formData.get('email');
+    console.log('Sending OTP to:', email);
     await axiosInstance.post('/auth/send-otp', {
-      email: formData.get('email'),
+      email,
     });
     return createSuccessResponse('OTP sent successfully');
   } catch (err) {
@@ -67,8 +68,10 @@ export async function handleOtpVerification(
   try {
     OtpSchema.parse(convertFormDataToRecord(formData));
     const otp = formData.get('otp');
+    const email = formData.get('email');
     await axiosInstance.post('/auth/verify-otp', {
       otp,
+      email,
     });
     return createSuccessResponse('OTP verified successfully');
   } catch (err) {

@@ -58,7 +58,7 @@ const USER_ACTIONS: NavbarActions = {
     {
       type: 'link',
       icon: User2Icon,
-      href: '/dashboard/profile',
+      href: '/profile',
     },
   ],
 };

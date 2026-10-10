@@ -11,6 +11,7 @@ export const EmailSchema = z.object({
 
 export const OtpSchema = z.object({
   otp: z.string().length(6, { message: 'OTP must be 6 digits' }),
+  email: z.string().email({ message: 'Invalid email address' }).optional(),
 });
 
 export const NewPasswordSchema = z

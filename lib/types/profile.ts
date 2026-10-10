@@ -1,3 +1,16 @@
+import { ChallengeSolveResp } from './challenge';
+
+export interface UserProfileResponse {
+  id: number;
+  username: string;
+  role: string;
+  status: number;
+  score: number;
+  rank: number;
+  email: string;
+  challenges: ChallengeSolveResp[];
+}
+
 export interface UserProfile {
   id: string;
   username: string;
@@ -5,8 +18,8 @@ export interface UserProfile {
   email: string;
   avatar: string;
   role: 'user' | 'admin';
-  createdAt: Date;
-  lastActive: Date;
+  createdAt: string;
+  lastActive: string;
   bio: string;
   socialLinks: {
     github?: string;

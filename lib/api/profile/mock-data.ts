@@ -77,8 +77,8 @@ export const MOCK_USER_PROFILE: UserProfile = {
   name: 'Hacker Kumar',
   avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=hacker123',
   role: 'user',
-  createdAt: new Date('2023-01-01'),
-  lastActive: new Date('2024-03-20'),
+  createdAt: '2023-01-01T00:00:00.000Z',
+  lastActive: '2024-03-20T00:00:00.000Z',
   bio: 'Security enthusiast and CTF player. Love solving challenges and learning new things!',
   socialLinks: {
     github: 'https://github.com/hacker123',
@@ -95,8 +95,8 @@ export const MOCK_USER_PROFILE_2: UserProfile = {
   name: 'Sarah Johnson',
   avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=webwizard',
   role: 'user',
-  createdAt: new Date('2022-08-15'),
-  lastActive: new Date('2024-07-18'),
+  createdAt: '2022-08-15T00:00:00.000Z',
+  lastActive: '2024-07-18T00:00:00.000Z',
   bio: 'Web security specialist and JavaScript enthusiast. Full-stack developer by day, CTF player by night.',
   socialLinks: {
     github: 'https://github.com/webwizard',
@@ -113,8 +113,8 @@ export const MOCK_USER_PROFILE_3: UserProfile = {
   name: 'Alex Chen',
   avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=cryptokid',
   role: 'user',
-  createdAt: new Date('2023-05-20'),
-  lastActive: new Date('2024-07-15'),
+  createdAt: '2023-05-20T00:00:00.000Z',
+  lastActive: '2024-07-15T00:00:00.000Z',
   bio: 'Cryptography aficionado with a background in mathematics. Always looking to crack the next cipher!',
   socialLinks: {
     github: 'https://github.com/cryptokid',
@@ -130,8 +130,8 @@ export const MOCK_USER_PROFILE_4: UserProfile = {
   name: 'Michael Zhang',
   avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=reversegod',
   role: 'admin',
-  createdAt: new Date('2022-03-10'),
-  lastActive: new Date('2024-07-20'),
+  createdAt: '2022-03-10T00:00:00.000Z',
+  lastActive: '2024-07-20T00:00:00.000Z',
   bio: 'Reverse engineering specialist with a passion for low-level systems. CTF organizer and challenge creator.',
   socialLinks: {
     github: 'https://github.com/reversegod',

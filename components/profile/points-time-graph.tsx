@@ -23,8 +23,6 @@ interface PointsTimeGraphProps {
 }
 
 function PointsTimeGraph({ username }: PointsTimeGraphProps) {
-  // const { data: chartData, isLoading } = usePointsOverTime(username);
-
   const { data: chartData } = useSuspenseQuery(pointsOverTimeQuery(username));
 
   return (
@@ -45,9 +43,12 @@ function PointsTimeGraph({ username }: PointsTimeGraphProps) {
               tickLine={false}
               axisLine={false}
               tickMargin={8}
-              tickFormatter={(value) =>
-                value.toLocaleDateString('en-US', { month: 'short' })
-              }
+              tickFormatter={(value) => {
+                const date = value instanceof Date ? value : new Date(value);
+                return isNaN(date.getTime())
+                  ? ''
+                  : date.toLocaleDateString('en-US', { month: 'short' });
+              }}
             />
             <YAxis />
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
